@@ -4,7 +4,11 @@
 
 <h1>Your Pragmatic Catalog</h1>
 
-<% cache(@products) do %>
+<% if @visit_counter > 5 %>
+<h3>You have made <%= pluralize(@visit_counter, 'visit') %> to this page without adding anything to the cart, might want to reconsider your actions.</h3>
+<% end %>
+
+<% cache ['entry', Product.latest] do %>
   <% @products.each do |product| %>
     <% cache ['entry', product] do %>
       <div class="entry">
@@ -13,6 +17,7 @@
         <%= sanitize(product.description) %>
         <div class="price_line">
           <span class="price"><%= number_to_currency(product.price) %></span>
+          <%= button_to 'Add to Cart', line_items_path(product_id: product) %>
         </div>
       </div>
     <% end %>
