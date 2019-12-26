@@ -43,10 +43,30 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy line_item" do
+    curr_cart = @line_item.cart
     assert_difference('LineItem.count', -1) do
       delete line_item_url(@line_item)
     end
 
-    assert_redirected_to line_items_url
+    assert_redirected_to cart_path(curr_cart)
   end
+
+  test "add duplicate products" do
+    assert_difference('LineItem.count', 1) do
+      post line_items_url, params: { product_id: products(:ruby).id }
+      post line_items_url, params: { product_id: products(:ruby).id }
+    end 
+   
+    assert_redirected_to cart_path(session[:cart_id])
+  end
+
+  test "add unique products" do
+    assert_difference('LineItem.count', 3) do
+      post line_items_url, params: { product_id: products(:ruby).id }
+      post line_items_url, params: { product_id: products(:two).id }
+      post line_items_url, params: { product_id: products(:one).id }
+    end 
+    
+    assert_redirected_to cart_path(session[:cart_id])
+  end  
 end
