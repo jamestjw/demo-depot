@@ -1,27 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Pragprog Books Online Store</title>
+  <title>Amazon Books</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
 
-  <% if true %>
+  <%= stylesheet_link_tag '//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/le-frog/jquery-ui.min.css' %>
+
   <%= javascript_pack_tag "application", "data-turbolinks-track": 'reload' %>
-  <% end %>
   <%= csrf_meta_tags %>
 </head>
 <body class="<%= controller.controller_name %>">
   <div id="banner">
     <%= image_tag("logo.png") %>
-    <%= @page_title || "Pragmatic Bookshelf" %>
+    <%= @page_title || "Amazon Bookshelf" %>
   </div>
   <div id="columns">
     <div id="side">
-      <ul>
-        <li><a href="http://www....">Home</a></li>
-        <li><a href="http://www..../faq">Questions</a></li>
-        <li><a href="http://www..../news">News</a></li>
-        <li><a href="http://www..../contact">Contact</a></li>
-      </ul>
+
+      <div id="cart" class="carts">
+        <%= render_if @cart && @cart.line_items.any?, @cart %>
+      </div>
+
+      <div>
+        <ul>
+          <li><%= link_to 'Home', store_path %></li>
+          <li><a href="http://www..../faq">Questions</a></li>
+          <li><a href="http://www..../news">News</a></li>
+          <li><a href="http://www..../contact">Contact</a></li>
+        </ul>
+      </div>
     </div>
     <div id="main">
       <%= yield %>
