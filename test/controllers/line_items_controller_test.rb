@@ -2,7 +2,7 @@ require 'test_helper'
 
 class LineItemsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @line_item = line_items(:two)
+    @line_item = line_items(:one)
   end
 
   test "should get index" do
@@ -59,7 +59,7 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
       delete line_item_url(@line_item)
     end
 
-    assert_redirected_to cart_path(curr_cart)
+    assert_redirected_to store_index_url
   end
 
   test "add duplicate products" do

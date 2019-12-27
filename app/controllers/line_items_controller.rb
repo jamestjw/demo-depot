@@ -70,7 +70,7 @@ class LineItemsController < ApplicationController
 
     @line_item.destroy
     respond_to do |format|
-      format.html { redirect_to cart_path(curr_cart), notice: 'Successfully removed item from your cart.' }
+      format.html { redirect_to store_index_url, notice: 'Successfully removed item from your cart.' }
       format.json { head :no_content }
     end
   end

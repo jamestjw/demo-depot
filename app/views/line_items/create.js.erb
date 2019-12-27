@@ -1,4 +1,4 @@
-$('#cart').html("<%=j render(@cart) %>");
-console.log('lol')
+$('#notice').hide();
+$('#cart').html("<%=j render_if(@cart && !@cart.line_items.empty?, @cart)  %>");
 
 
