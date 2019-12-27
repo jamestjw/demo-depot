@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :line_items
+  resources :line_items do
+    put 'quantity', on: :member
+  end
   resources :carts
   get 'store/index'
   resources :products

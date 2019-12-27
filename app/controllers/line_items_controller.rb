@@ -75,6 +75,41 @@ class LineItemsController < ApplicationController
     end
   end
 
+  # PUT /line_items
+  # PUT /line_items.json
+  def quantity
+    @cart = Cart.find(session[:cart_id])
+    @line_item = LineItem.find(params[:id])
+    if params[:increment]
+      @line_item = @cart.add_product(@line_item.product)
+      if @line_item.save
+        respond_to do |format|
+          format.html { redirect_to store_path, notice: 'Line item was successfully increased.' }
+          format.js { @current_item = @line_item }
+          format.json { head :ok }
+        end
+      end
+    else
+      if @line_item.quantity > 1
+        @line_item.quantity -= 1
+        if @line_item.save
+          respond_to do |format|
+            format.html { redirect_to store_path, notice: 'Line item was successfully decreased.' }
+            format.js { @current_item = @line_item }
+            format.json { head :ok }
+          end
+        end
+      else
+        @line_item.destroy
+        respond_to do |format|
+          format.html { redirect_to store_path, notice: 'Line item was successfully destroyed.' }
+          format.js { @current_item = @line_item }
+          format.json { head :ok }
+        end
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_line_item
