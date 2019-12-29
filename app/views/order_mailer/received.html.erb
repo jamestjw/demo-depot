@@ -1,0 +1,14 @@
+<h3>Pragmatic Order Shipped</h3>
+<p>
+  Dear <%= @order.name %>,
+</p> 
+
+<p>
+  Thank you for your recent order from Amazon Bookstore. You ordered the following items:
+</p>
+
+<table>
+<%= render partial: 'line_items/line_item_email', collection: @order.line_items -%>
+</table>
+
+<p>We'll send you a separate e-mail when your order ships.</p>

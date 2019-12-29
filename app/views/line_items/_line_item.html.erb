@@ -4,9 +4,9 @@
 <tr>  
 <% end %>  
     <td>
-        <%= line_item.quantity %>&times; 
-        <%= button_to '-', quantity_line_item_path(line_item.id), method: :put , remote: true %> 
-        <%= button_to '+', quantity_line_item_path(line_item.id), method: :put , params: { increment: true } , remote: true %> 
+        <%= line_item.quantity %>&times;
+        <%= button_to '-', quantity_line_item_path(line_item.id), method: :put , remote: true %>  
+        <%= button_to '+', quantity_line_item_path(line_item.id), method: :put , params: { increment: true } , remote: true %>
     </td>
     <td><%= line_item.product.title %></td>
     <td class="item_price"><%= number_to_currency(line_item.total_price) %> </td>
