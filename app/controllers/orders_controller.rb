@@ -38,7 +38,8 @@ class OrdersController < ApplicationController
         
         OrderMailer.received(@order).deliver_later
 
-        format.html { redirect_to store_index_url, notice: 'Thanks for making an order.' }
+        format.html { redirect_to store_index_url, notice:
+          I18n.t('.thanks')}
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }
