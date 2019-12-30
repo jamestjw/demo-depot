@@ -54,4 +54,11 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to products_url
   end
+
+  test "unable to see products while loggedout" do
+    logout
+    get products_url
+    assert_redirected_to login_url
+    assert_equal flash[:alert], "You are required to log in to access this functionality."
+  end
 end

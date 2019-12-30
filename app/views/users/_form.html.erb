@@ -22,8 +22,15 @@
       <%= form.text_field :name, size: 40 %>
     </div>
 
+    <% if @edit %>
+      <div class="field">
+        <%= form.label :oldpassword, 'Old PW:' %>
+        <%= form.password_field :oldpassword, size: 40 %>
+      </div>
+    <% end %>
+
     <div class="field">
-      <%= form.label :password, 'Password:' %>
+      <%= form.label :password, 'New PW:' %>
       <%= form.password_field :password, size: 40 %>
     </div>
 
