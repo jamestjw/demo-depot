@@ -1,11 +1,12 @@
 require "application_system_test_case"
 
 class ProductsTest < ApplicationSystemTestCase
+  include ActiveJob::TestHelper
   setup do
     @product = products(:one)
   end
 
-  test "visiting the index" do
+  test "visiting the product index" do
     visit products_url
     assert_selector "h1", text: "Products"
   end
@@ -17,7 +18,7 @@ class ProductsTest < ApplicationSystemTestCase
     fill_in "Description", with: @product.description
     fill_in "Image url", with: @product.image_url
     fill_in "Price", with: @product.price
-    fill_in "Title", with: @product.title
+    fill_in "Title", with: "New Prod Title"
     click_on "Create Product"
 
     assert_text "Product was successfully created"
@@ -31,7 +32,7 @@ class ProductsTest < ApplicationSystemTestCase
     fill_in "Description", with: @product.description
     fill_in "Image url", with: @product.image_url
     fill_in "Price", with: @product.price
-    fill_in "Title", with: @product.title
+    fill_in "Title", with: "Updated Title"
     click_on "Update Product"
 
     assert_text "Product was successfully updated"
@@ -44,6 +45,6 @@ class ProductsTest < ApplicationSystemTestCase
       click_on "Destroy", match: :first
     end
 
-    assert_text "Product was successfully destroyed"
+    assert_text "This product belongs in a cart."
   end
 end

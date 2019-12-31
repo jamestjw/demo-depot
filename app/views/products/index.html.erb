@@ -1,4 +1,6 @@
-<h1>Listing products</h1>
+<p id="notice"><%= notice %></p> 
+
+<h1>Listing Products</h1>
 
 <table>
 <% @products.each do |product| %>
@@ -22,5 +24,5 @@
 <% end %>
 </table>
 <br />
-<%= link_to 'New product', new_product_path %>
+<%= link_to 'New Product', new_product_path %>
 

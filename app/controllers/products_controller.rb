@@ -73,6 +73,10 @@ class ProductsController < ApplicationController
       end 
     end
   end
+
+  rescue_from 'Product::Error' do |exception|
+    redirect_to products_url, notice: exception.message
+  end 
     
   private
     # Use callbacks to share common setup or constraints between actions.
