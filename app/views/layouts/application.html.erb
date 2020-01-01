@@ -8,6 +8,13 @@
 
   <%= javascript_pack_tag "application", "data-turbolinks-track": 'reload' %>
   <%= csrf_meta_tags %>
+
+  <script type="text/javascript">
+    I18n.defaultLocale = "<%= I18n.default_locale %>"; 
+    I18n.locale = "<%= I18n.locale %>";
+    console.log("i18n woring")
+  </script>   
+
 </head>
 <body class="<%= controller.controller_name %>">
   <div id="banner">

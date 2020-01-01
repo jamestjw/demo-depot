@@ -60,3 +60,6 @@ gem 'rails-controller-testing'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+
+# To provide I18N to React
+gem 'i18n-js'

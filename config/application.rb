@@ -16,5 +16,7 @@ module Depot
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
     config.filter_parameters += [ :credit_card_number ]
+    
+    config.middleware.use I18n::JS::Middleware
   end
 end
