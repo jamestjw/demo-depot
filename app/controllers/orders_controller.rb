@@ -36,10 +36,10 @@ class OrdersController < ApplicationController
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
         
-        OrderMailer.received(@order).deliver_later
+        # OrderMailer.received(@order).deliver_later
+        ChargeOrderJob.perform_later(@order,pay_type_params.to_h)
 
-        format.html { redirect_to store_index_url, notice:
-          I18n.t('.thanks')}
+        format.html { redirect_to store_index_url, notice: I18n.t('.thanks')}
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }
