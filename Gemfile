@@ -67,6 +67,8 @@ gem 'jquery-rails'
 # To provide I18N to React
 gem 'i18n-js'
 
+# Slim gem to replace ERB
+gem 'slim-rails'
 
 group :production do 
   gem 'pg'
