@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
     protected
         def authorize
             unless User.find_by(id: session[:user_id])
+
                 if !request.format.html? && authenticate_or_request_with_http_basic('Administration') do |username, password|
                         username == 'admin' && password == 'admin'
                     end
